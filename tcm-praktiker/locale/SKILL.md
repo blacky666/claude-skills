@@ -13,7 +13,7 @@ Wende die Waehrungs- und Locale-Regeln an. Wenn `$ARGUMENTS` eine Datei enthaelt
 ## Standardwaehrung
 
 - **EUR** (Euro) ist die Standardwaehrung
-- Schweizer Praktiker koennen **CHF** waehlen
+- Schweizer koennen **CHF** waehlen
 
 ## Zahlenformate
 
