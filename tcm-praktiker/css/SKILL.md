@@ -30,11 +30,17 @@ Pruefe CSS-Code gegen die Richtlinien. Wenn `$ARGUMENTS` eine Datei enthaelt, li
 }
 
 /* FALSCH */
-.dashboard { display: flex; }
-.card-grid { display: flex; flex-wrap: wrap; }
+.dashboard {
+	display: flex;
+}
+.card-grid {
+	display: flex;
+	flex-wrap: wrap;
+}
 ```
 
 **Flexbox NUR erlaubt fuer:**
+
 - Button-Gruppen / Tag-Chips (dynamische Breite)
 - Zentrierung eines einzelnen Elements
 - Navigation-Items in einer Zeile
@@ -104,11 +110,28 @@ Alle Farben, Schriften und Abstaende als CSS-Variablen. **Keine hardcoded Werte.
 - Keine `em`/`rem` ohne definierten Basis-Wert
 
 ```css
-body { font-family: var(--font-primary); font-size: var(--font-size-base); color: var(--color-text-dark); line-height: 1.5; }
-h1 { font-size: var(--font-size-3xl); font-weight: 700; }
-h2 { font-size: var(--font-size-2xl); font-weight: 700; }
-h3 { font-size: var(--font-size-xl); font-weight: 700; }
-h4 { font-size: var(--font-size-lg); font-weight: 600; }
+body {
+	font-family: var(--font-primary);
+	font-size: var(--font-size-base);
+	color: var(--color-text-dark);
+	line-height: 1.5;
+}
+h1 {
+	font-size: var(--font-size-3xl);
+	font-weight: 700;
+}
+h2 {
+	font-size: var(--font-size-2xl);
+	font-weight: 700;
+}
+h3 {
+	font-size: var(--font-size-xl);
+	font-weight: 700;
+}
+h4 {
+	font-size: var(--font-size-lg);
+	font-weight: 600;
+}
 ```
 
 ---
@@ -116,32 +139,56 @@ h4 { font-size: var(--font-size-lg); font-weight: 600; }
 ## 4. Responsive Design
 
 ### Breakpoints
+
 - **Desktop**: Default (1024px+)
 - **Tablet**: < 1024px
 - **Mobile**: < 768px (nur ausgewaehlte Bereiche)
 
-### Admin (praktiker.meine-tcm.com): Desktop-first
+### Admin: Desktop-first
+
 ```css
-.admin-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
-@media (max-width: 1023px) { .admin-layout { grid-template-columns: 1fr; } }
+.admin-layout {
+	display: grid;
+	grid-template-columns: 260px 1fr;
+	min-height: 100vh;
+}
+@media (max-width: 1023px) {
+	.admin-layout {
+		grid-template-columns: 1fr;
+	}
+}
 ```
 
 ### WordPress (meine-tcm.com): Mobile-first
+
 ```css
-.content { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
-@media (min-width: 768px) { .content { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .content { grid-template-columns: repeat(3, 1fr); } }
+.content {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--space-4);
+}
+@media (min-width: 768px) {
+	.content {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+@media (min-width: 1024px) {
+	.content {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
 ```
 
 ### Responsive-Pflicht
-| Bereich | Mobile | Tablet | Desktop |
-|---------|--------|--------|---------|
-| meine-tcm.com (WordPress) | Pflicht | Pflicht | Pflicht |
-| Admin: Dashboard & Anfragen | Ja (vereinfacht) | Ja | Ja |
-| Admin: Kalender | Nein | Eingeschraenkt | Ja |
-| Admin: Patienten | Nein | Eingeschraenkt | Ja |
-| Admin: Rechnungen | Nein | Nein | Ja |
-| Admin: Einstellungen | Nein | Ja | Ja |
+
+| Bereich                     | Mobile           | Tablet         | Desktop |
+| --------------------------- | ---------------- | -------------- | ------- |
+| meine-tcm.com (WordPress)   | Pflicht          | Pflicht        | Pflicht |
+| Admin: Dashboard & Anfragen | Ja (vereinfacht) | Ja             | Ja      |
+| Admin: Kalender             | Nein             | Eingeschraenkt | Ja      |
+| Admin: Patienten            | Nein             | Eingeschraenkt | Ja      |
+| Admin: Rechnungen           | Nein             | Nein           | Ja      |
+| Admin: Einstellungen        | Nein             | Ja             | Ja      |
 
 ---
 
@@ -150,9 +197,18 @@ h4 { font-size: var(--font-size-lg); font-weight: 600; }
 Fuer Komponenten in verschiedenen Kontexten (z.B. Cards in Sidebar vs. Hauptbereich).
 
 ```css
-.card-container { container-type: inline-size; }
-.card { display: grid; grid-template-columns: 1fr; }
-@container (min-width: 400px) { .card { grid-template-columns: auto 1fr; } }
+.card-container {
+	container-type: inline-size;
+}
+.card {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+@container (min-width: 400px) {
+	.card {
+		grid-template-columns: auto 1fr;
+	}
+}
 ```
 
 ---
@@ -163,10 +219,18 @@ Alle Werte aus dem Design-Token-System oder begruendet.
 
 ```css
 /* RICHTIG */
-.card { padding: var(--space-6); border-radius: var(--radius-md); gap: var(--space-4); }
+.card {
+	padding: var(--space-6);
+	border-radius: var(--radius-md);
+	gap: var(--space-4);
+}
 
 /* FALSCH */
-.card { padding: 23px; border-radius: 7px; gap: 13px; }
+.card {
+	padding: 23px;
+	border-radius: 7px;
+	gap: 13px;
+}
 ```
 
 ---
@@ -174,11 +238,16 @@ Alle Werte aus dem Design-Token-System oder begruendet.
 ## 7. Naming: BEM
 
 ```css
-.patient-card { }           /* Block */
-.patient-card__header { }   /* Element */
-.patient-card__body { }     /* Element */
-.patient-card--active { }   /* Modifier */
-.patient-card--paused { }   /* Modifier */
+.patient-card {
+} /* Block */
+.patient-card__header {
+} /* Element */
+.patient-card__body {
+} /* Element */
+.patient-card--active {
+} /* Modifier */
+.patient-card--paused {
+} /* Modifier */
 ```
 
 ---
@@ -197,7 +266,10 @@ Wenn `!important` noetig erscheint, ist die Spezifitaet falsch. Einzige Ausnahme
 - Bilder: `aspect-ratio` statt Padding-Hack, `loading="lazy"`
 
 ```css
-.patient-row { content-visibility: auto; contain-intrinsic-size: 0 64px; }
+.patient-row {
+	content-visibility: auto;
+	contain-intrinsic-size: 0 64px;
+}
 ```
 
 ---
@@ -208,10 +280,16 @@ Nur `transform` und `opacity` animieren. **Keine Layout-Properties** (width, hei
 
 ```css
 /* RICHTIG */
-.modal { transition: transform 200ms ease, opacity 200ms ease; }
+.modal {
+	transition:
+		transform 200ms ease,
+		opacity 200ms ease;
+}
 
 /* FALSCH */
-.modal { transition: height 200ms ease; }
+.modal {
+	transition: height 200ms ease;
+}
 ```
 
 ---
